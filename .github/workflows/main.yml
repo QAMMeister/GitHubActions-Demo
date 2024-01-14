@@ -7,9 +7,6 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
