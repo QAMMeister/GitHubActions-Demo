@@ -13,6 +13,10 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} //Sonar Token generated 
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} example URL (https://sq.bswlog.co.in/)
+          
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
   docker:
     runs-on: ubuntu-latest
