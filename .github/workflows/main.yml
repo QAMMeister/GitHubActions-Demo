@@ -4,7 +4,6 @@ on: [workflow_dispatch]
 jobs:
   Explore-GitHub-Actions:
     runs-on: self-hosted
-    container: null
     # runs-on: ubuntu-latest
     steps:    
       - name: Check out repository code
@@ -13,14 +12,10 @@ jobs:
           repository: ${{ github.repository }}
           path: main
       - name: SonarQube Scan
-      #  uses: sonarsource/sonarqube-scan-action@master
-        uses: sonarsource/sonarcloud-github-action@master
-      #  env:
-        with:
-      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
-      #    SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}  
-          login: ${{ secrets.SONAR_TOKEN }} 
-          host: ${{ secrets.SONAR_HOST_URL }}       
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}      
       #- name: Set up QEMU
       #  uses: docker/setup-qemu-action@v3
       #- name: Set up Docker Buildx
