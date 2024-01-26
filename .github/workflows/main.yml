@@ -13,7 +13,7 @@ jobs:
           path: main
       - name: SonarQube Scan
       #  uses: sonarsource/sonarqube-scan-action@master
-        uses: kitabisa/sonarqube-action@v1.2.0
+        uses: sonarsource/sonarcloud-github-action@master
       #  env:
         with:
       #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
