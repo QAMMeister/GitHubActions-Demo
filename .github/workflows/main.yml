@@ -7,7 +7,10 @@ jobs:
     # runs-on: ubuntu-latest
     steps:    
       - name: Check out repository code
-        uses: actions/checkout@v4   
+        uses: actions/checkout@v4
+        with:
+          repository: arndvorrath/githubactionsdemo
+          path: main
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
