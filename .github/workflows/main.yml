@@ -12,10 +12,14 @@ jobs:
           repository: ${{ github.repository }}
           path: main
       - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}  
+      #  uses: sonarsource/sonarqube-scan-action@master
+        uses: kitabisa/sonarqube-action@v1.2.0
+      #  env:
+        with:
+      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
+      #    SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}  
+          login: ${{ secrets.SONAR_TOKEN }} 
+          host: ${{ secrets.SONAR_HOST_URL }}       
       #- name: Set up QEMU
       #  uses: docker/setup-qemu-action@v3
       #- name: Set up Docker Buildx
