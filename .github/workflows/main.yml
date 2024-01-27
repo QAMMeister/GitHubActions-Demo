@@ -15,7 +15,8 @@ jobs:
         uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}      
+          # SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   
+          SONAR_HOST_URL: https://localhost:9000
       #- name: Set up QEMU
       #  uses: docker/setup-qemu-action@v3
       #- name: Set up Docker Buildx
