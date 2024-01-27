@@ -7,8 +7,7 @@ jobs:
     # runs-on: ubuntu-latest
     steps:    
       - name: Check out repository code
-        run: find /__w/${{ github.event.repository.name }}/${{ github.event.repository.name }}/. -name . -o -prune -exec rm -rf -- {} + || true
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
         with:
           repository: ${{ github.repository }}
           path: main
@@ -16,7 +15,7 @@ jobs:
         uses: sonarsource/sonarqube-scan-action@master
         with: 
           projectBaseDir: /home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main
-      #    #projectBaseDir: ${{ env.GITHUB_WORKSPACE }}
+          #projectBaseDir: ${{ env.GITHUB_WORKSPACE }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
           # SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   
