@@ -14,7 +14,8 @@ jobs:
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         with: 
-          projectBaseDir: /home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main
+          #projectBaseDir: /home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main
+          projectBaseDir: ${{ GITHUB_ACTION_PATH }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
           # SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   
