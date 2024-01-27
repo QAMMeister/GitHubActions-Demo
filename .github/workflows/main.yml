@@ -16,7 +16,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
           # SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   
-          SONAR_HOST_URL: https://127.0.0.1:9000
+          SONAR_HOST_URL: http://127.0.0.1:9000
       #- name: Set up QEMU
       #  uses: docker/setup-qemu-action@v3
       #- name: Set up Docker Buildx
