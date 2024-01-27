@@ -8,9 +8,9 @@ jobs:
     steps:    
       - name: Check out repository code
         uses: actions/checkout@v4
-        with:
-          repository: ${{ github.repository }}
-          path: main
+      #  with:
+      #    repository: ${{ github.repository }}
+      #    path: main
       #- name: SonarQube Scan
       #  uses: sonarsource/sonarqube-scan-action@master
       #  #with: 
