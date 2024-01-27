@@ -5,8 +5,6 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: self-hosted
     steps:    
-      - name: Start self-hosted runner
-        run: ./actions-runner/run.sh
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
