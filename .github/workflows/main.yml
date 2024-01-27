@@ -7,7 +7,8 @@ jobs:
     # runs-on: ubuntu-latest
     steps:    
       - name: Check out repository code
-        uses: actions/checkout@v4
+        run: find /__w/${{ github.event.repository.name }}/${{ github.event.repository.name }}/. -name . -o -prune -exec rm -rf -- {} + || true
+      - uses: actions/checkout@v4
         with:
           repository: ${{ github.repository }}
           path: main
