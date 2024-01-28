@@ -43,6 +43,6 @@ jobs:
       - name: Docker Deploy
         run: docker run -p 49160:8080 -d arndvorrath/githubactionsdemo:latest
       - name: Open HelloWorld page
-        run: xdg-open 10.0.2.15:49160
+        run: xdg-open http://10.0.2.15:49160
    
 
