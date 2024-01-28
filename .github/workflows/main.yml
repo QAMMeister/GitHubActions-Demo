@@ -36,9 +36,13 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
+          context: .
+          file: ./Dockerfile
           push: true
           tags: arndvorrath/githubactionsdemo:latest
       - name: Open DockerHub page
         run: xdg-open https://hub.docker.com/repository/docker/arndvorrath/githubactionsdemo/general
+      - name: Docker Deploy
+        run: docker run -p 49160:8080 -d arndvorrath/githubactionsdemo:latest
    
 
