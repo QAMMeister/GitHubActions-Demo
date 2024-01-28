@@ -38,5 +38,7 @@ jobs:
         with:
           push: true
           tags: arndvorrath/githubactionsdemo:latest
+      - name: Open DockerHub page
+        run: xdg-open https://hub.docker.com/repository/docker/arndvorrath/githubactionsdemo/general
    
 
