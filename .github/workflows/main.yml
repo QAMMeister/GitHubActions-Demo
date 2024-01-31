@@ -10,9 +10,6 @@ jobs:
         with:
           repository: ${{ github.repository }}
           path: main
-  Job2:    
-    runs-on: self-hosted
-    steps:
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         with: 
