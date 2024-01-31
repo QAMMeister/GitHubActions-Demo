@@ -13,7 +13,7 @@ jobs:
           repository: ${{ github.repository }}
           path: main
       - name: Environment2
-        run: echo "${{ env.GITHUB_WORKSPACE }}"
+        run: echo "${{ GITHUB_WORKSPACE }}"
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         with: 
