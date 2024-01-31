@@ -5,6 +5,8 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: self-hosted
     steps:    
+      - name: Environment
+        run: echo {{ env.GITHUB_WORKSPACE }}
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
