@@ -5,24 +5,18 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: self-hosted
     steps:    
-      - name: Environment1
-        run: echo "${{ github.actor }}"
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository }}
           path: main
-      - name: Environment2
-        run: echo "${{ github.ref_name }}"
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         with: 
-          projectBaseDir: ${{ github.workspace }}/main
-          #projectBaseDir: ${{ env.GITHUB_WORKSPACE }}
+          projectBaseDir: ${{ github.workspace }}/${{ github.ref_name }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   
-          # SONAR_HOST_URL: http://10.0.2.15:9000  
       #- name: Open SonarQube Page
       - run: xdg-open http://10.0.2.15:9000/dashboard?id=GitHubActions-Demo
       #- name: Set up QEMU
