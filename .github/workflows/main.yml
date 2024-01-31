@@ -57,7 +57,7 @@ jobs:
     needs: Docker-Build-Push 
     steps:
       - name: Docker stop running containers
-        run: docker rm $(docker ps -a -q --filter "ancestor=arndvorrath/githubactionsdemo:latest")
+        run: docker ps -q --filter ancestor="arndvorrath/githubactionsdemo:latest" | xargs -r docker stop
       - name: Docker Deploy
         run: docker run -p 49160:8080 -d arndvorrath/githubactionsdemo:latest
       #- name: Open HelloWorld page
