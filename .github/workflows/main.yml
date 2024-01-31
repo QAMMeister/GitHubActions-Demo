@@ -13,11 +13,11 @@ jobs:
           repository: ${{ github.repository }}
           path: main
       - name: Environment2
-        run: echo "${{ github.workspace }}"
+        run: echo "${{ github.ref_name }}"
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         with: 
-          projectBaseDir: /home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main
+          projectBaseDir: ${{ github.workspace }}/main
           #projectBaseDir: ${{ env.GITHUB_WORKSPACE }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
