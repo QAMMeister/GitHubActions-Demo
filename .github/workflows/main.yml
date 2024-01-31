@@ -17,10 +17,10 @@ jobs:
           #projectBaseDir: ${{ env.GITHUB_WORKSPACE }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
-          # SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   
-          SONAR_HOST_URL: http://10.0.2.15:9000  
-      - name: Open SonarQube Page
-        run: xdg-open http://10.0.2.15:9000/dashboard?id=GitHubActions-Demo
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   
+          # SONAR_HOST_URL: http://10.0.2.15:9000  
+      #- name: Open SonarQube Page
+      - run: xdg-open http://10.0.2.15:9000/dashboard?id=GitHubActions-Demo
       #- name: Set up QEMU
       #  uses: docker/setup-qemu-action@v3
       #- name: Set up Docker Buildx
