@@ -12,6 +12,7 @@ jobs:
           repository: ${{ github.repository }}
           path: main
   SonarQube-Scan:
+    name: Execute SonarQube Scan
     runs-on: self-hosted
     needs: Check-Out
     steps: 
@@ -23,12 +24,14 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} 
   SonarQube-Show:
+    name: Show SonarQube Report
     runs-on: self-hosted
     needs: Check-Out
     steps:
       - name: Open SonarQube Page
         run: xdg-open http://10.0.2.15:9000/dashboard?id=GitHubActions-Demo
   DockerHub-Login:
+    name: Login to DockerHub
     runs-on: self-hosted
     needs: [SonarQube-Scan,SonarQube-Show] 
     steps:
@@ -39,6 +42,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
   Docker-Build-Push: 
+      name: Build and Push Docker Image
       runs-on: self-hosted
       needs: [SonarQube-Scan,SonarQube-Show] 
       steps:
@@ -48,18 +52,21 @@ jobs:
           push: true
           tags: arndvorrath/githubactionsdemo:latest
   Open-DockerHub: 
+      name: Open DockerHub Repository
       runs-on: self-hosted
       needs: [SonarQube-Scan,SonarQube-Show] 
       steps:
       - name: Open DockerHub page
         run: xdg-open https://hub.docker.com/repository/docker/arndvorrath/githubactionsdemo/general
   Docker-Housekeeping:
+        name: Stop old Docker container
         runs-on: self-hosted
         needs: Docker-Build-Push
         steps:
         - name: Docker stop running containers
           run: docker ps -q --filter ancestor="arndvorrath/githubactionsdemo:latest" | xargs -r docker stop
   Docker-Deploy:
+        name: Deploy new Docker container
         runs-on: self-hosted
         needs: Docker-Build-Push       
         environment:
@@ -69,6 +76,7 @@ jobs:
          - name: Docker Deploy
            run: docker run -p 49160:8080 -d arndvorrath/githubactionsdemo:latest
   Open-HelloCGI-Page:
+        name: Open 'Hello CGI' page
         runs-on: self-hosted
         needs: Docker-Deploy
         steps:
