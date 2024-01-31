@@ -3,21 +3,17 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [workflow_dispatch]
 jobs:
   Check-Out:
+    name: Optional name
     runs-on: self-hosted
-    environment: 
-      name: staging
-      url: https://github.com/ArndVorrath/GitHubActionsDemo
     steps:    
-      - name: Check out repository code
+      - id: JobID
+        name: Check out repository code
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository }}
           path: main
   SonarQube-Scan:
     runs-on: self-hosted
-    environment:
-      name: staging
-      url: http://10.0.2.15:9000/dashboard?id=GitHubActions-Demo
     needs: Check-Out
     steps: 
       - name: SonarQube Scan
@@ -27,13 +23,10 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   
-      #- name: Open SonarQube Page
-        #run: xdg-open http://10.0.2.15:9000/dashboard?id=GitHubActions-Demo
+      - name: Open SonarQube Page
+        run: xdg-open http://10.0.2.15:9000/dashboard?id=GitHubActions-Demo
   Docker-Build-Push:
     runs-on: self-hosted
-    environment:
-      name: staging
-      url: https://hub.docker.com/repository/docker/arndvorrath/githubactionsdemo/general
     needs: SonarQube-Scan
     steps:
       - name: Login to Docker Hub
@@ -47,8 +40,8 @@ jobs:
         with:
           push: true
           tags: arndvorrath/githubactionsdemo:latest
-      #- name: Open DockerHub page
-        #run: xdg-open https://hub.docker.com/repository/docker/arndvorrath/githubactionsdemo/general
+      - name: Open DockerHub page
+        run: xdg-open https://hub.docker.com/repository/docker/arndvorrath/githubactionsdemo/general
   Docker-Deploy:
     runs-on: self-hosted
     environment:
