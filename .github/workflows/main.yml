@@ -5,13 +5,15 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: self-hosted
     steps:    
-      - name: Environment
+      - name: Environment1
         run: echo "${{ github.actor }}"
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository }}
           path: main
+      - name: Environment2
+        run: echo "${{ env.GITHUB_WORKSPACE }}"
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         with: 
