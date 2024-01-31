@@ -26,14 +26,14 @@ jobs:
   SonarQube-Show:
     name: Show SonarQube Report
     runs-on: self-hosted
-    needs: Check-Out
+    needs: SonarQube-Scan
     steps:
       - name: Open SonarQube Page
         run: xdg-open http://10.0.2.15:9000/dashboard?id=GitHubActions-Demo
   DockerHub-Login:
     name: Login to DockerHub
     runs-on: self-hosted
-    needs: [SonarQube-Scan,SonarQube-Show] 
+    needs: [SonarQube-Scan] 
     steps:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -44,7 +44,7 @@ jobs:
   Docker-Build-Push: 
       name: Build and Push Docker Image
       runs-on: self-hosted
-      needs: [SonarQube-Scan,SonarQube-Show] 
+      needs: [SonarQube-Scan,DockerHub-Login] 
       steps:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
@@ -54,21 +54,21 @@ jobs:
   Open-DockerHub: 
       name: Open DockerHub Repository
       runs-on: self-hosted
-      needs: [SonarQube-Scan,SonarQube-Show] 
+      needs: [Docker-Build-Push] 
       steps:
       - name: Open DockerHub page
         run: xdg-open https://hub.docker.com/repository/docker/arndvorrath/githubactionsdemo/general
   Docker-Housekeeping:
         name: Stop old Docker container
         runs-on: self-hosted
-        needs: [DockerHub-Login,Docker-Build-Push,Open-DockerHub]
+        needs: [Docker-Build-Push]
         steps:
         - name: Docker stop running containers
           run: docker ps -q --filter ancestor="arndvorrath/githubactionsdemo:latest" | xargs -r docker stop
   Docker-Deploy:
         name: Deploy new Docker container
         runs-on: self-hosted
-        needs: [DockerHub-Login,Docker-Build-Push,Open-DockerHub]      
+        needs: [Docker-Housekeeping]      
         environment:
          name: staging
          url: http://10.0.2.15:49160
