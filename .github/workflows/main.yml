@@ -24,7 +24,7 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} 
   SonarQube-Show:
     runs-on: self-hosted
-    needs: Check-Out
+    needs: [Check-Out, SonarQube-Scan]
     steps:
       - name: Open SonarQube Page
         run: xdg-open http://10.0.2.15:9000/dashboard?id=GitHubActions-Demo
