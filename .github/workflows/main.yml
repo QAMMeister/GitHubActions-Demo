@@ -5,7 +5,7 @@ jobs:
   Check-Out:
     runs-on: self-hosted
     environment: 
-      name: production
+      name: staging
     steps:    
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -15,7 +15,7 @@ jobs:
   SonarQube-Scan:
     runs-on: self-hosted
     environment:
-      name: production
+      name: staging
       url: http://10.0.2.15:9000/dashboard?id=GitHubActions-Demo
     needs: Check-Out
     steps: 
