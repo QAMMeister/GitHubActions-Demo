@@ -2,7 +2,7 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [workflow_dispatch]
 jobs:
-  Check out repository code:
+  job1:
     runs-on: self-hosted
     steps:    
       - name: Check out repository code
@@ -10,7 +10,7 @@ jobs:
         with:
           repository: ${{ github.repository }}
           path: main
-  SonarQube Scan:    
+  Job2:    
     runs-on: self-hosted
     steps:
       - name: SonarQube Scan
