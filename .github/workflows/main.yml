@@ -61,14 +61,14 @@ jobs:
   Docker-Housekeeping:
         name: Stop old Docker container
         runs-on: self-hosted
-        needs: Docker-Build-Push
+        needs: [DockerHub-Login,Docker-Build-Push,Open-DockerHub]
         steps:
         - name: Docker stop running containers
           run: docker ps -q --filter ancestor="arndvorrath/githubactionsdemo:latest" | xargs -r docker stop
   Docker-Deploy:
         name: Deploy new Docker container
         runs-on: self-hosted
-        needs: Docker-Build-Push       
+        needs: [DockerHub-Login,Docker-Build-Push,Open-DockerHub]      
         environment:
          name: staging
          url: http://10.0.2.15:49160
