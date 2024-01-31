@@ -7,7 +7,7 @@ jobs:
     environment: 
       name: staging
       #url: file:///home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main
-      url: ${{ github.workspace }}/${{ github.ref_name }}
+      url: file://${{ github.workspace }}/${{ github.ref_name }}
     steps:    
       - name: Check out repository code
         uses: actions/checkout@v4
