@@ -75,11 +75,11 @@ jobs:
         steps:
          - name: Docker Deploy
            run: docker run -p 49160:8080 -d arndvorrath/githubactionsdemo:latest
-  Open-HelloCGI-Page:
-        name: Open 'Hello CGI' page
-        runs-on: self-hosted
-        needs: Docker-Deploy
-        steps:
-        - name: Open 'Hello CGI' page
-          run: xdg-open http://10.0.2.15:49160
+  #Open-HelloCGI-Page:
+  #      name: Open 'Hello CGI' page
+  #      runs-on: self-hosted
+  #      needs: Docker-Deploy
+  #      steps:
+  #      - name: Open 'Hello CGI' page
+  #        run: xdg-open http://10.0.2.15:49160
 
