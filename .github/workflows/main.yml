@@ -14,9 +14,11 @@ jobs:
           # Optional port (defaults to 465)
           server_port: 465
           # Optional (recommended): mail server username
-          username: ${{secrets.MAIL_USERNAME}}
+          # username: ${{secrets.MAIL_USERNAME}}
+          username: QAMMeister@gmail.com
           # Optional (recommended): mail server password
-          password: ${{secrets.MAIL_PASSWORD}}
+          # password: ${{secrets.MAIL_PASSWORD}}
+          password: QAMMeister2024!
           # Required mail subject
           subject: Github Actions job results
            # Required recipients address
