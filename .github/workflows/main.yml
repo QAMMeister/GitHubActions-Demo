@@ -2,6 +2,27 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [workflow_dispatch]
 jobs:
+  Send-Mail:
+    name: Send an email
+    runs-on: self-hosted
+    steps:   
+      - name: Send an email
+        uses: devellany/send-mailer@v1.0.2
+        with:
+          host: smtp.googlemail.com
+          # Optional port (defaults to 465)
+          port: 465
+          account: ${{secrets.MAIL_ACCOUNT}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          sender: QAMMeister
+          from: ${{secrets.MAIL_ADDRESS}}
+          to: QAMMeister@gmail.com
+          subject: Deployment successful!
+          body: Hello Team, the deployment was successful!
+          # Optional content type (defaults to text/plain)
+          #contentType: text/plain
+          # Optional attachment files (JSON type. require property 'path')
+          # attachments: '[{"path":"README.md"}]'
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
