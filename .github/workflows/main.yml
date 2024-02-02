@@ -10,7 +10,7 @@ jobs:
         uses: hilarion5/send-mail@v1
         with:
           smtp-server: smtp.gmail.com
-          smtp-port: 587
+          smtp-port: 465
           smtp-secure: true
           from-email: qammeister@gmail.com
           to-email: qammeister@gmail.com
