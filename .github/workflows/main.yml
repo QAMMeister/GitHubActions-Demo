@@ -9,37 +9,18 @@ jobs:
       - name: Send an email
         uses: hilarion5/send-mail@v1
         with:
-          # Reqired mail server address 
-          server_address: smtp-mail.outlook.com
-          # Optional port (defaults to 465)
-          server_port: 587
-          # Optional (recommended): mail server username
-          # username: ${{secrets.MAIL_USERNAME}}
-          username: arnd.vorrath@outlook.com
-          # Optional (recommended): mail server password
-          # password: ${{secrets.MAIL_PASSWORD}}
-          password: Schuirweg88!
-          # Required mail subject
-          subject: Github Actions job results
-           # Required recipients address
-          to: QAMMeister@gmail.com
-          # Required sender full name (address can be skipped)
-          from: Arnd Vorrath
-          # Optional plain body
-          body: Build job of ${{github.repository}} completed successfully!
-          # Optional HTML body read from file
-          # html_body: file://README.md
-          # Optional carbon copy recipients
-          # cc: a@example.com,b@example.com
-          # Optional recipient of the email response
-          # reply_to: luke@example.com# Optional Message ID this message is replying to
-          # in_reply_to: <random-luke@example.com>
-          # Optional converting Markdown to HTML (set content_type to text/html too)
-          # convert_mardown: true
-          # Optional attachments
-          # attachments: README.md
-          # Optional priority: 'high', 'normal' (default) or 'low'
-          # priority: low
+          smtp-server: smtp.gmail.com
+          smtp-port: 587
+          smtp-secure: true
+          from-email: qammeister@gmail.com
+          to-email: qammeister@gmail.com
+          username: qammeister@gmail.com
+          password: QAMMeister2024!
+          subject: Test Email
+          body: This is a test email sent from GitHub Actions.
+          html: |
+            <h1>This is a test email</h1>
+            <p>Test Paragraph</p>
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
