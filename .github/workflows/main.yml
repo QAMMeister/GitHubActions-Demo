@@ -9,16 +9,20 @@ jobs:
       - name: Announcerr
         uses: singhkshitij/announcerr@v2.0
         with:
-          server_address: smtp-mail.outlook.com
+          #server_address: smtp-mail.outlook.com
+          server_address: smtp.gmail.com
           server_port: 587
-          username: arnd.vorrath@outlook.com
-          password: Schuirweg88!
+          # username: arnd.vorrath@outlook.com
+          username: qammeister@gmail.com
+          #password: Schuirweg88!
+          password: QAMMeister2024!
           subject: Launching my awesomeProduct version ${{ github.event.release.tag_name }}
           # Literal body:
           body: Just launched new version of my ${{github.repository}} ! It is fully packed with awesome features.
           # Read file contents as body:
           #body: file://README.md
-          to: arnd.vorrath@outlook.com
+          #to: arnd.vorrath@outlook.com
+          to: qammeister@gmail.com
           from: Arnd Vorrath # <kshitij@mytrashcode.com>
           # Optional content type (defaults to text/plain):
           #content_type: text/html
