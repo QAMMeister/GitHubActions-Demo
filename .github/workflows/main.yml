@@ -11,7 +11,7 @@ jobs:
         with:
           smtp-server: smtp.gmail.com
           smtp-port: 587
-          smtp-secure: false
+          smtp-secure: true
           from-email: qammeister@gmail.com
           to-email: qammeister@gmail.com
           username: qammeister@gmail.com
