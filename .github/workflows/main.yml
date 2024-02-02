@@ -24,7 +24,7 @@ jobs:
            # Required recipients address
           to: QAMMeister@gmail.com
           # Required sender full name (address can be skipped)
-          from: ${{secrets.MAIL_ADDRESS}}
+          from: arnd.vorrath@outlook.com
           # Optional plain body
           body: Build job of ${{github.repository}} completed successfully!
           # Optional HTML body read from file
