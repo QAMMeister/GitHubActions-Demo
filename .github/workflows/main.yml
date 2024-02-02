@@ -18,7 +18,6 @@ jobs:
           body: Just launched new version of my ${{github.repository}} ! It is fully packed with awesome features.
           # Read file contents as body:
           #body: file://README.md
-          #to: arnd.vorrath@outlook.com
           to: qammeister@gmail.com
           from: Arnd Vorrath # <arnd.vorrath@outlook.com>
           # Optional content type (defaults to text/plain):
