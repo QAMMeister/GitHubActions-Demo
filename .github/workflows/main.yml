@@ -10,15 +10,15 @@ jobs:
         uses: betterfor/action-send-mail@main
         with:
           # Reqired mail server address 
-          server_address: smtp.googlemail.com
+          server_address: smtp-mail.outlook.com
           # Optional port (defaults to 465)
           server_port: 587
           # Optional (recommended): mail server username
           # username: ${{secrets.MAIL_USERNAME}}
-          username: qammeister@gmail.com
+          username: arnd.vorrath@outlook.com
           # Optional (recommended): mail server password
           # password: ${{secrets.MAIL_PASSWORD}}
-          password: QAMMeister2024!
+          password: Killroy1!
           # Required mail subject
           subject: Github Actions job results
            # Required recipients address
