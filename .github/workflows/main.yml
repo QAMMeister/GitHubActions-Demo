@@ -9,7 +9,7 @@ jobs:
       - name: Send an email
         uses: hilarion5/send-mail@v1
         with:
-          smtp-server: smtp.gmail.com
+          smtp-server: smtp.office365.com
           smtp-port: 587
           smtp-secure: true
           from-email: arnd.vorrath@outlook.com
