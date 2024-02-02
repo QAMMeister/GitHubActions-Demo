@@ -18,7 +18,7 @@ jobs:
           username: arnd.vorrath@outlook.com
           # Optional (recommended): mail server password
           # password: ${{secrets.MAIL_PASSWORD}}
-          password: Killroy1!
+          password: Schuirweg88!
           # Required mail subject
           subject: Github Actions job results
            # Required recipients address
