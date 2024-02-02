@@ -17,7 +17,7 @@ jobs:
           # Literal body:
           body: Just launched new version of my ${{github.repository}} ! It is fully packed with awesome features.
           # Read file contents as body:
-          body: file://README.md
+          #body: file://README.md
           to: arnd.vorrath@outlook.com
           from: Arnd Vorrath # <kshitij@mytrashcode.com>
           # Optional content type (defaults to text/plain):
