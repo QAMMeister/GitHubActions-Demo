@@ -12,7 +12,7 @@ jobs:
           # Reqired mail server address 
           server_address: smtp.googlemail.com
           # Optional port (defaults to 465)
-          server_port: 465
+          server_port: 587
           # Optional (recommended): mail server username
           # username: ${{secrets.MAIL_USERNAME}}
           username: qammeister@gmail.com
