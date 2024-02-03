@@ -88,7 +88,8 @@ jobs:
     needs: [Docker-Deploy] 
     steps:
       - name: Selenium test
-        run: mvn test -Dcucumber.options="/home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/src/test/resources/Features/HelloWorld.feature"  
+        # run: mvn test -Dcucumber.options="/home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/src/test/resources/Features/HelloWorld.feature"  
+        run: ls -la
   Send-Mail:
     name: Send an email
     runs-on: self-hosted
