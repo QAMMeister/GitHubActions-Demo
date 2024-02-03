@@ -2,12 +2,12 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [workflow_dispatch]
 jobs:
-  Testing:
-    name: Testing
-    runs-on: self-hosted
-    steps:    
-      - name: Checkout
-        uses: actions/checkout@v4
+  #Testing:
+   # name: Testing
+   # runs-on: self-hosted
+   # steps:    
+   #   - name: Checkout
+    #    uses: actions/checkout@v4
       #- name: Java
       #  uses: actions/setup-java@v4
       #  with:
@@ -15,9 +15,9 @@ jobs:
        #   java-version: '21'
        #   cache: maven
       #    cache-dependency-path: 'pom.xml' # optional
-      - name: Build with Maven
-        run: mvn test -Dcucumber.options="HelloWorld.feature"
-        #run: mvn -version
+     # - name: Build with Maven
+     #   run: mvn test -Dcucumber.options="HelloWorld.feature"
+     #   #run: mvn -version
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
@@ -27,25 +27,25 @@ jobs:
         with:
           repository: ${{ github.repository }}
           path: main
-  SonarQube-Scan:
-    name: Execute SonarQube Scan
-    runs-on: self-hosted
-    needs: Check-Out
-    steps: 
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
-        with: 
-          projectBaseDir: ${{ github.workspace }}/${{ github.ref_name }}
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} 
-  SonarQube-Show:
-    name: Show SonarQube Report
-    runs-on: self-hosted
-    needs: SonarQube-Scan
-    steps:
-      - name: Open SonarQube Page
-        run: xdg-open http://10.0.2.15:9000/dashboard?id=GitHubActions-Demo
+  #SonarQube-Scan:
+  #  name: Execute SonarQube Scan
+   # runs-on: self-hosted
+   # needs: Check-Out
+  #  steps: 
+   #   - name: SonarQube Scan
+  #      uses: sonarsource/sonarqube-scan-action@master
+   #     with: 
+   #       projectBaseDir: ${{ github.workspace }}/${{ github.ref_name }}
+   #     env:
+   #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
+    #      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} 
+ # SonarQube-Show:
+ #   name: Show SonarQube Report
+ #   runs-on: self-hosted
+ #   needs: SonarQube-Scan
+ #   steps:
+  #    - name: Open SonarQube Page
+  #      run: xdg-open http://10.0.2.15:9000/dashboard?id=GitHubActions-Demo
   DockerHub-Login:
     name: Login to DockerHub
     runs-on: self-hosted
