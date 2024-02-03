@@ -82,7 +82,7 @@ jobs:
   #      steps:
   #      - name: Open 'Hello CGI' page
   #        run: xdg-open http://10.0.2.15:49160
-  Test-Execution:
+  Test-Automation:
     name: Execute Selenium tests
     runs-on: self-hosted
     needs: [Docker-Deploy] 
@@ -92,6 +92,7 @@ jobs:
   Send-Mail:
     name: Send an email
     runs-on: self-hosted
+    needs: [Test-Automation]
     steps:   
       - name: Announcerr
         uses: singhkshitij/announcerr@v2.0
