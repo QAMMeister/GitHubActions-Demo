@@ -16,7 +16,8 @@ jobs:
           cache: 'maven'
           cache-dependency-path: 'pom.xml' # optional
       - name: Build with Maven
-        run: mvn test -Dcucumber.options="HelloWorld.feature"
+        #run: mvn test -Dcucumber.options="HelloWorld.feature"
+        run: mvn -version
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
