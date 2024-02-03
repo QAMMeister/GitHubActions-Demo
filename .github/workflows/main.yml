@@ -2,6 +2,19 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [workflow_dispatch]
 jobs:
+  Testing:
+    name: Testing
+    runs-on: self-hosted
+    steps:    
+      - name: Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+          cache-dependency-path: 'sub-project/pom.xml' # optional
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
