@@ -2,28 +2,6 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [workflow_dispatch]
 jobs:
-  Send-Mail:
-    name: Send an email
-    runs-on: self-hosted
-    steps:   
-      - name: Announcerr
-        uses: singhkshitij/announcerr@v2.0
-        with:
-          server_address: smtp-mail.outlook.com
-          server_port: 587
-          username: ${{secrets.MAIL_USERNAME}}
-          password: ${{secrets.MAIL_PASSWORD}}
-          subject: Launching my awesomeProduct version ${{ github.event.release.tag_name }}
-          # Literal body:
-          body: Just launched new version of my ${{github.repository}} ! It is fully packed with awesome features.
-          # Read file contents as body:
-          #body: file://README.md
-          to: qammeister@gmail.com
-          from: GitHub-Actions-Demo # <qammeister@gmail.com>
-          # Optional content type (defaults to text/plain):
-          #content_type: text/html
-          # Optional attachments:
-          #attachments: attachments.zip,git.diff,./dist/static/main.js
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
@@ -64,39 +42,39 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
   Docker-Build-Push: 
-      name: Build and Push Docker Image
-      runs-on: self-hosted
-      needs: [SonarQube-Scan,DockerHub-Login] 
-      steps:
+    name: Build and Push Docker Image
+    runs-on: self-hosted
+    needs: [SonarQube-Scan,DockerHub-Login] 
+    steps:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           push: true
           tags: arndvorrath/githubactionsdemo:latest
   Open-DockerHub: 
-      name: Open DockerHub Repository
-      runs-on: self-hosted
-      needs: [Docker-Build-Push] 
-      steps:
+    name: Open DockerHub Repository
+    runs-on: self-hosted
+    needs: [Docker-Build-Push] 
+    steps:
       - name: Open DockerHub page
         run: xdg-open https://hub.docker.com/repository/docker/arndvorrath/githubactionsdemo/general
   Docker-Housekeeping:
-        name: Stop old Docker container
-        runs-on: self-hosted
-        needs: [Docker-Build-Push]
-        steps:
-        - name: Docker stop running containers
-          run: docker stop $(docker ps -a -q)
+    name: Stop old Docker container
+    runs-on: self-hosted
+    needs: [Docker-Build-Push]
+    steps:
+      - name: Docker stop running containers
+        run: docker stop $(docker ps -a -q)
   Docker-Deploy:
-        name: Deploy new Docker container
-        runs-on: self-hosted
-        needs: [Docker-Housekeeping]      
-        environment:
-         name: staging
-         url: http://10.0.2.15:49160
-        steps:
-         - name: Docker Deploy
-           run: docker run -p 49160:8080 -d arndvorrath/githubactionsdemo:latest
+    name: Deploy new Docker container
+    runs-on: self-hosted
+    needs: [Docker-Housekeeping]      
+    environment:
+      name: staging
+      url: http://10.0.2.15:49160
+    steps:
+      - name: Docker Deploy
+        run: docker run -p 49160:8080 -d arndvorrath/githubactionsdemo:latest
   #Open-HelloCGI-Page:
   #      name: Open 'Hello CGI' page
   #      runs-on: self-hosted
@@ -104,4 +82,33 @@ jobs:
   #      steps:
   #      - name: Open 'Hello CGI' page
   #        run: xdg-open http://10.0.2.15:49160
+  Test-Execution:
+    name: Execute tests
+    runs-on: self-hosted
+    needs: [Docker-Deploy] 
+    steps:
+      - name: Selenium test
+        run: mvn test -Dcucumber.options="src/test/resources/login.feature"
+  Send-Mail:
+    name: Send an email
+    runs-on: self-hosted
+    steps:   
+      - name: Announcerr
+        uses: singhkshitij/announcerr@v2.0
+        with:
+          server_address: smtp-mail.outlook.com
+          server_port: 587
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: Launching my awesomeProduct version ${{ github.event.release.tag_name }}
+          # Literal body:
+          body: Just launched new version of my ${{github.repository}} ! It is fully packed with awesome features.
+          # Read file contents as body:
+          #body: file://README.md
+          to: qammeister@gmail.com
+          from: GitHub-Actions-Demo # <qammeister@gmail.com>
+          # Optional content type (defaults to text/plain):
+          #content_type: text/html
+          # Optional attachments:
+          #attachments: attachments.zip,git.diff,./dist/static/main.js
 
