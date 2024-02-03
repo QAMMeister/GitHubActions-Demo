@@ -60,7 +60,7 @@ jobs:
   Docker-Build-Push: 
     name: Build and Push Docker Image
     runs-on: self-hosted
-    needs: [SonarQube-Scan,DockerHub-Login] 
+   # needs: [SonarQube-Scan,DockerHub-Login] 
     steps:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
