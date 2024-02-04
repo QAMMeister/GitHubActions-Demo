@@ -46,7 +46,7 @@ jobs:
         with:
           push: true
           tags: arndvorrath/githubactionsdemo:latest
-  Open-DockerHub: 
+  DockerHub-Show: 
     name: Show DockerHub Repository
     runs-on: self-hosted
     needs: [Docker-Build-Push] 
@@ -74,14 +74,23 @@ jobs:
         run: |
           cd main
           mvn verify
-  Show-Selenium:
+  Selenium-Show:
     name: Show Cucumber Report
     runs-on: self-hosted
     needs: [Selenium-Test] 
     steps:
       - name: Show Cucumber report
         run: xdg-open /home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber-html-reports/overview-features.html    
-  Send-Mail:
+  Xray-Upload:
+    name: Upload Report in Xray
+    runs-on: self-hosted
+    needs: [Selenium-Test] 
+    steps:
+      - name: Upload Report in Xray
+        uses: dedene/curl@v1
+        with:
+          args: -H "Content-Type:application/json" -X POST -H "Authorization:Bearer NzQ3ODI1NzE4NTg3OtuwGrJJJWBd1fg2oXpcSQi9YmFg" --data @/home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber.json https://proactioneu.ent.cgi.com/jira/rest/raven/1.0/import/execution          
+  Mail-Send:
     name: Send a Notification email
     runs-on: self-hosted
     needs: [Selenium-Test]
