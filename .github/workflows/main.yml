@@ -42,7 +42,7 @@ jobs:
   #        username: ${{ secrets.DOCKERHUB_USERNAME }}
   #        password: ${{ secrets.DOCKERHUB_TOKEN }}
   Docker-Build-Push: 
-    name: Build and Push Docker Image
+    name: Build&Push Docker Image
     runs-on: self-hosted
     #needs: [SonarQube-Scan,DockerHub-Login]
     needs: [SonarQube-Scan]
