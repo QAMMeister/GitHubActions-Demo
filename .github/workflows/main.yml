@@ -30,21 +30,9 @@ jobs:
     steps:
       - name: Open SonarQube Page
         run: xdg-open http://10.0.2.15:9000/dashboard?id=GitHubActions-Demo
-  #DockerHub-Login:
-  #  name: Login to DockerHub
-  #  runs-on: self-hosted
-  #  needs: [SonarQube-Scan] 
-  #  steps:
-  #    - name: Login to Docker Hub
-  #      uses: docker/login-action@v3
-  #      with:
-  #        registry: docker.io
-  #        username: ${{ secrets.DOCKERHUB_USERNAME }}
-  #        password: ${{ secrets.DOCKERHUB_TOKEN }}
   Docker-Build-Push: 
-    name: Build&Push Docker Image
+    name: Build & Push Docker Image
     runs-on: self-hosted
-    #needs: [SonarQube-Scan,DockerHub-Login]
     needs: [SonarQube-Scan]
     steps:
       - name: Login to Docker Hub
@@ -65,39 +53,29 @@ jobs:
     steps:
       - name: Open DockerHub page
         run: xdg-open https://hub.docker.com/repository/docker/arndvorrath/githubactionsdemo/general
-  Docker-Housekeeping:
-    name: Stop old Docker container
-    runs-on: self-hosted
-    needs: [Docker-Build-Push]
-    steps:
-      - name: Docker stop running containers
-        run: docker stop $(docker ps -a -q)
   Docker-Deploy:
     name: Deploy new Docker container
     runs-on: self-hosted
-    needs: [Docker-Housekeeping]      
+    needs: [Docker-Build-Push]
     environment:
       name: staging
       url: http://10.0.2.15:49160
     steps:
-      - name: Docker Deploy
+      - name: Stop old Docker container
+        run: docker stop $(docker ps -a -q)
+      - name: Deploy new Docker container
         run: docker run -p 49160:8080 -d arndvorrath/githubactionsdemo:latest
-  #Open-HelloCGI-Page:
-  #      name: Open 'Hello CGI' page
-  #      runs-on: self-hosted
-  #      needs: Docker-Deploy
-  #      steps:
-  #      - name: Open 'Hello CGI' page
-  #        run: xdg-open http://10.0.2.15:49160
   Test-Automation:
     name: Execute Selenium tests
     runs-on: self-hosted
     needs: [Docker-Deploy] 
     steps:
-      - name: Selenium test
+      - name: Execute Selenium test
         run: |
           cd main
-          mvn test
+          mvn verify
+      - name: Open JUnit Report page
+        run: xdg-open /target/cucumber-html-reports/overview-features.html    
   Send-Mail:
     name: Send an email
     runs-on: self-hosted
