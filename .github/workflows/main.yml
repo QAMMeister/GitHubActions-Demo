@@ -103,7 +103,7 @@ jobs:
           # Optional content type (defaults to text/plain):
           content_type: text/html
           # Optional attachments:
-          #attachments: attachments.zip,git.diff,./dist/static/main.js
+          attachments: /home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber-html-reports/overview-features.html 
   Show-Mail:
     name: Show Notification Mail
     runs-on: self-hosted
