@@ -116,7 +116,7 @@ jobs:
   Show-Mail:
     name: Show Notification Mail
     runs-on: self-hosted
-    needs: [Send-Mail] 
+    needs: [Mail-Send] 
     steps:
       - name: Show Notification Mail
         run: xdg-open https://mail.google.com/mail/u/0/#inbox 
