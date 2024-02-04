@@ -47,7 +47,7 @@ jobs:
           push: true
           tags: arndvorrath/githubactionsdemo:latest
   Open-DockerHub: 
-    name: Open DockerHub Repository
+    name: Show DockerHub Repository
     runs-on: self-hosted
     needs: [Docker-Build-Push] 
     steps:
@@ -65,21 +65,26 @@ jobs:
         run: docker stop $(docker ps -a -q)
       - name: Deploy new Docker container
         run: docker run -p 49160:8080 -d arndvorrath/githubactionsdemo:latest
-  Test-Automation:
-    name: Execute Selenium tests
+  Selenium-Test:
+    name: Execute Selenium Cucumber tests
     runs-on: self-hosted
     needs: [Docker-Deploy] 
     steps:
-      - name: Execute Selenium test
+      - name: Execute Selenium Cucumber test
         run: |
           cd main
           mvn verify
-      - name: Open JUnit Report page
+  Show-Selenium:
+    name: Show Cucumber Report
+    runs-on: self-hosted
+    needs: [Selenium-Test] 
+    steps:
+      - name: Show Cucumber report
         run: xdg-open /home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber-html-reports/overview-features.html    
   Send-Mail:
-    name: Send an email
+    name: Send a Notification email
     runs-on: self-hosted
-    needs: [Test-Automation]
+    needs: [Selenium-Test]
     steps:   
       - name: Announcerr
         uses: singhkshitij/announcerr@v2.0
@@ -92,11 +97,18 @@ jobs:
           # Literal body:
           # body: Just launched new version of my ${{github.repository}} ! It is fully packed with awesome features.
           # Read file contents as body:
-          body: file:///home/githubactions/eclipse-workspace/GithubActionsDemo/target/cucumber-html-reports/overview-features.html
+          body: file:///home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber-html-reports/overview-features.html 
           to: qammeister@gmail.com
           from: GitHub-Actions-Demo # <qammeister@gmail.com>
           # Optional content type (defaults to text/plain):
           content_type: text/html
           # Optional attachments:
           #attachments: attachments.zip,git.diff,./dist/static/main.js
+  Show-Mail:
+    name: Show Notification Mail
+    runs-on: self-hosted
+    needs: [Send-Mail] 
+    steps:
+      - name: Show Notification Mail
+        run: xdg-open https://mail.google.com/mail/u/0/#inbox 
 
