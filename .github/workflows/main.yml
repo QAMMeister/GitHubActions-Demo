@@ -89,9 +89,8 @@ jobs:
     steps:
       - name: Selenium test
         run: |
-          mvn test -Dcucumber.options="TestRunner.java"
-          mvn test -Dcucumber.options="main/TestRunner.java"
-          mvn test -Dcucumber.options="/main/TestRunner.java"
+          cd main
+          mvn test
   Send-Mail:
     name: Send an email
     runs-on: self-hosted
