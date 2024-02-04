@@ -11,6 +11,14 @@ jobs:
         with:
           repository: ${{ github.repository }}
           path: main
+  Versuch:
+    name: Local Dir
+    runs-on: self-hosted
+    needs: [Check-Out] 
+    steps:
+      - name: Selenium test
+        #run: mvn test -Dcucumber.options="src/test/java/StepDefinitions/TestRunner.java"  
+        run: pwd
   SonarQube-Scan:
     name: Execute SonarQube Scan
     runs-on: self-hosted
