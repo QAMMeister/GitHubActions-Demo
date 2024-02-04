@@ -75,7 +75,7 @@ jobs:
           cd main
           mvn verify
       - name: Open JUnit Report page
-        run: xdg-open /target/cucumber-html-reports/overview-features.html    
+        run: xdg-open /home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber-html-reports/overview-features.html    
   Send-Mail:
     name: Send an email
     runs-on: self-hosted
