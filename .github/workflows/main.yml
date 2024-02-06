@@ -23,7 +23,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
           # SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} 
-          SONAR_HOST_URL: pumuckl
+          SONAR_HOST_URL: http://localhost
   SonarQube-Show:
     name: Show SonarQube Report
     runs-on: self-hosted
