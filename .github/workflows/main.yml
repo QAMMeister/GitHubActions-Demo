@@ -23,7 +23,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
           #SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} 
-          SONAR_HOST_URL: https://172.17.0.1:9000
+          SONAR_HOST_URL: http://172.17.0.1:9000
   SonarQube-Show:
     name: Show SonarQube Report
     runs-on: self-hosted
