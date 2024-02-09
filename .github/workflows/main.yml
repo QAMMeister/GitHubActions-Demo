@@ -2,6 +2,12 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [workflow_dispatch]
 jobs:
+  xdg-open:
+    name: xdg-open
+    runs-on: self-hosted
+    steps:
+      - name: Open SonarQube Page Test
+        run: xdg-open http://www.google.de
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
