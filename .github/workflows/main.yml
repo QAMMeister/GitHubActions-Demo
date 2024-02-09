@@ -7,7 +7,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Open SonarQube Page Test
-        run: firefox http://www.google.de
+        run: sensible-browser http://www.google.de
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
