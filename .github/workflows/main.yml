@@ -10,7 +10,7 @@ jobs:
         run: |
           pwd
           ls -la
-          xdg-open /home/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main$/index.html
+          xdg-open ./main/index.html
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
