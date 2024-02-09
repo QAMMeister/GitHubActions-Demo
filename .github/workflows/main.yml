@@ -7,7 +7,10 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Open SonarQube Page Test
-        run: xdg-open /home/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main$/index.html
+        run: |
+          pwd
+          ls -la
+          xdg-open /home/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main$/index.html
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
