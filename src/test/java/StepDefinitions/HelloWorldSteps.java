@@ -14,7 +14,7 @@ public class HelloWorldSteps {
     @Given("I open the URL {string}")
     public void iOpenTheURL(String url) {
     	FirefoxOptions options = new FirefoxOptions();
-    	options.setBinary("/usr/lib/firefox/firefox");
+    	options.setBinary(getFirefoxLocation());
     	driver = new FirefoxDriver(options);
         driver.get(url);
     }
