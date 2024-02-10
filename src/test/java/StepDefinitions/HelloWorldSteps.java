@@ -13,8 +13,9 @@ public class HelloWorldSteps {
 
     @Given("I open the URL {string}")
     public void iOpenTheURL(String url) {
+        //System.setProperty("webdriver.gecko.driver", "/usr/bin/geckodriver");
     	FirefoxOptions options = new FirefoxOptions();
-    	options.setBinary(getFirefoxLocation());
+    	options.setBinary("/usr/bin/geckodriver");
     	driver = new FirefoxDriver(options);
         driver.get(url);
     }
