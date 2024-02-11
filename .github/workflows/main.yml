@@ -106,7 +106,7 @@ jobs:
           # Literal body:
           # body: Just launched new version of my ${{github.repository}} ! It is fully packed with awesome features.
           # Read file contents as body:
-          body: file:///home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber-html-reports/overview-features.html 
+          body: "file:///home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber-html-reports/overview-features.html" 
           to: qammeister@gmail.com
           from: GitHub-Actions-Demo # <qammeister@gmail.com>
           # Optional content type (defaults to text/plain):
