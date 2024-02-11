@@ -89,7 +89,8 @@ jobs:
       - name: Upload Report in Xray     
         uses: dedene/curl@v1
         with:
-          args: -H "Content-Type:application/json" -X POST -H "Authorization:Bearer NzQ3ODI1NzE4NTg3OtuwGrJJJWBd1fg2oXpcSQi9YmFg" --data @/home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber.json "https://proactioneu.ent.cgi.com/jira/rest/raven/1.0/import/execution"
+          url: https://proactioneu.ent.cgi.com/jira/rest/raven/1.0/import/execution
+          args: -H "Content-Type:application/json" -X POST -H "Authorization:Bearer NzQ3ODI1NzE4NTg3OtuwGrJJJWBd1fg2oXpcSQi9YmFg" --data @/home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber.json
   Mail-Send:
     name: Send a Notification email
     runs-on: self-hosted
