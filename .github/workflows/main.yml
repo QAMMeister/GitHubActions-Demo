@@ -52,7 +52,7 @@ jobs:
     needs: [Docker-Build-Push] 
     steps:
       - name: Open DockerHub page
-        run: xdg-open https://hub.docker.com/repository/docker/arndvorrath/githubactionsdemo/general
+        run: google-chrome https://hub.docker.com/repository/docker/arndvorrath/githubactionsdemo/general
   Docker-Deploy:
     name: Deploy new Docker container
     runs-on: self-hosted
@@ -80,7 +80,7 @@ jobs:
     needs: [Selenium-Test] 
     steps:
       - name: Show Cucumber report
-        run: xdg-open /home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber-html-reports/overview-features.html    
+        run: google-chrome /home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber-html-reports/overview-features.html    
   Xray-Upload:
     name: Upload Report in Xray
     runs-on: self-hosted
@@ -120,5 +120,5 @@ jobs:
     needs: [Mail-Send] 
     steps:
       - name: Show Notification Mail
-        run: xdg-open https://mail.google.com/mail/u/0/#inbox 
+        run: google-chrome https://mail.google.com/mail/u/0/#inbox 
 
