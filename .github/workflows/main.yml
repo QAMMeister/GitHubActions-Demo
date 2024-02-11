@@ -93,7 +93,7 @@ jobs:
   Mail-Send:
     name: Send a Notification email
     runs-on: self-hosted
-    needs: [Selenium-Test]
+    needs: [Xray-Upload]
     steps:   
       - name: Announcerr
         uses: singhkshitij/announcerr@v2.0
