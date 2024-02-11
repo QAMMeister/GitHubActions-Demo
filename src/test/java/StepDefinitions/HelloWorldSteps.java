@@ -17,12 +17,14 @@ public class HelloWorldSteps {
 
     @Given("I open the URL {string}")
     public void iOpenTheURL(String url) {
-		WebDriverManager.chromedriver().setup();		
+		WebDriverManager.chromedriver().setup();
+	    
 		Map<String, Object> prefs = new HashMap<String, Object>();
 		prefs.put("profile.default_content_setting_values.cookies", 2);
 		ChromeOptions options = new ChromeOptions();
-		options.setExperimentalOption("prefs", prefs);		
-		WebDriver driver = new ChromeDriver(options);
+		options.setExperimentalOption("prefs", prefs);	
+	    
+		driver = new ChromeDriver(options);
         driver.get(url);
     }
 
