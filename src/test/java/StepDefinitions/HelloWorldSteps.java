@@ -13,16 +13,17 @@ import io.cucumber.java.en.Then;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class HelloWorldSteps {
-    private WebDriver driver;
+    public WebDriver driver;
 
     @Given("I open the URL {string}")
     public void iOpenTheURL(String url) {
-		WebDriverManager.chromedriver().setup();
-	    
-		//Map<String, Object> prefs = new HashMap<String, Object>();
-		//prefs.put("profile.default_content_setting_values.cookies", 2);
+		WebDriverManager.chromedriver().setup();	
+		
+		Map<String, Object> prefs = new HashMap<String, Object>();
+		prefs.put("profile.default_content_setting_values.cookies", 2);
 		ChromeOptions options = new ChromeOptions();
-		//options.setExperimentalOption("prefs", prefs);	
+		options.setExperimentalOption("prefs", prefs);	
+		
 		driver = new ChromeDriver(options);
         driver.get(url);
     }
