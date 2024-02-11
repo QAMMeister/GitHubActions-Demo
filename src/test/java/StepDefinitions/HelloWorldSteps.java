@@ -21,7 +21,7 @@ public class HelloWorldSteps {
 	    
 		//Map<String, Object> prefs = new HashMap<String, Object>();
 		//prefs.put("profile.default_content_setting_values.cookies", 2);
-		//ChromeOptions options = new ChromeOptions();
+		ChromeOptions options = new ChromeOptions();
 		//options.setExperimentalOption("prefs", prefs);	
 		driver = new ChromeDriver(options);
         driver.get(url);
