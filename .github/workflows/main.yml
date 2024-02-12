@@ -90,7 +90,7 @@ jobs:
         uses: dedene/curl@v1
         with:
           url: https://proactioneu.ent.cgi.com/jira/rest/raven/1.0/import/execution
-          args: -H "Content-Type:application/json" -X POST -H "Authorization:Bearer NzQ3ODI1NzE4NTg3OtuwGrJJJWBd1fg2oXpcSQi9YmFg" --data @/home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/import.json
+          args: -H "Content-Type:application/json" -X POST -H "Authorization:Bearer NzQ3ODI1NzE4NTg3OtuwGrJJJWBd1fg2oXpcSQi9YmFg" --data @/home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/Cucumber.json
   Mail-Send:
     name: Send a Notification email
     runs-on: self-hosted
