@@ -87,10 +87,7 @@ jobs:
     needs: [Selenium-Test] 
     steps:
       - name: Upload Report in Xray     
-        uses: dedene/curl@v1
-        with:
-          url: https://proactioneu.ent.cgi.com/jira/rest/raven/1.0/import/execution/cucumber
-          args: -H "Content-Type:application/json" -X POST -H "Authorization:Bearer NzQ3ODI1NzE4NTg3OtuwGrJJJWBd1fg2oXpcSQi9YmFg" --data @/home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber.json
+        run: curl -H "Content-Type:application/json" -X POST -H "Authorization:Bearer NzQ3ODI1NzE4NTg3OtuwGrJJJWBd1fg2oXpcSQi9YmFg" --data @/home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber.json "https://proactioneu.ent.cgi.com/jira/rest/raven/1.0/import/execution/cucumber"
   Xray-Show:
     name: Show Xray page
     runs-on: self-hosted
