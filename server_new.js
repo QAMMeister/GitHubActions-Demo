@@ -22,13 +22,3 @@ const server = http.createServer(requestListener);
 server.listen(port, host, () => {
     console.log(`Server is running on http://${host}:${port}`);
 });
-
-server.get('/posts', (req, res) => {
-  const posts = [
-    { id: 1, title: 'Post 1' },
-    { id: 2, title: 'Post 2' },
-    { id: 3, title: 'Post 3' }
-  ];
-  res.json(posts);
-});
-
