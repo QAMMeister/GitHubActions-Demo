@@ -17,5 +17,4 @@ COPY . .
 
 EXPOSE 8080
 # CMD [ "node", "server.js" ]
-# CMD [ "node", "server_new.js" ]
-CMD [ "node", "server_new2.js" ]
+CMD [ "node", "server_new.js" ]
