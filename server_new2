@@ -1,0 +1,11 @@
+var express = require("express");
+var app = express();
+app.get('/', function(req, res){
+   res.render('index.html');
+});
+app.get("/locations", (req, res, next) => {
+ res.json(["New York","Rio de Janeiro","Tokyo","Castrop-Rauxel"]);
+});
+app.listen(49160, () => {
+ console.log("Server running on port 49160");
+});
