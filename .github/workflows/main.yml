@@ -15,7 +15,7 @@ jobs:
     name: Execute SonarQube Scan
     runs-on: self-hosted
     needs: Check-Out
-    if: runner_os == 'octo-org/octo-repo-prod'
+    if: env.runner.os == 'Linux'
     steps: 
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
