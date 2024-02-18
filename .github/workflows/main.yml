@@ -15,9 +15,9 @@ jobs:
     name: Execute SonarQube Scan
     runs-on: self-hosted
     needs: Check-Out
-    if: ${{ runner.os == 'Linux' }}
     steps: 
       - name: SonarQube Scan
+        if: runner.os == 'Linux'
         uses: sonarsource/sonarqube-scan-action@master
         with: 
           projectBaseDir: ${{ github.workspace }}/${{ github.ref_name }}
