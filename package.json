@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Node.js on Docker",
   "author": "Arnd Vorrath <arnd.vorrath@cgi.com>",
-  "main": "server_new.js",
+  "main": "server_new2.js",
   "scripts": {
-    "start": "node server_new.js"
+    "start": "node server_new2.js"
   },
   "dependencies": {
     "express": "^4.16.1",
