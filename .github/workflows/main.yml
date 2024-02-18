@@ -17,13 +17,14 @@ jobs:
     needs: Check-Out
     steps: 
       - name: SonarQube Scan
-        if: runner.os == 'Linux'
-        uses: sonarsource/sonarqube-scan-action@master
-        with: 
-          projectBaseDir: ${{ github.workspace }}/${{ github.ref_name }}
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} 
+        #if: runner.os == 'Linux'
+        #uses: sonarsource/sonarqube-scan-action@master
+        #with: 
+        #  projectBaseDir: ${{ github.workspace }}/${{ github.ref_name }}
+       # env:
+        #  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
+        #  SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} 
+        run: sonar-scanner.bat -D"sonar.projectKey=githubactions-demo" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.token=sqp_5b93de5d4b3df72ac75fcf5422c339c5d1305557"
   SonarQube-Show:
     name: Show SonarQube Report
     runs-on: self-hosted
