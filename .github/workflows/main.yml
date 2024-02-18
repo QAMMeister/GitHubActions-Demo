@@ -30,6 +30,7 @@ jobs:
     needs: SonarQube-Scan
     steps:
       - name: Open SonarQube Page
+        if: runner.os == 'Linux'
         run: google-chrome http://10.0.2.15:9000/dashboard?id=GitHubActions-Demo        
   Docker-Build-Push: 
     name: Build & Push Docker Image
