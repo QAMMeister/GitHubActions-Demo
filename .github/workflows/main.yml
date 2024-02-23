@@ -15,6 +15,9 @@ jobs:
     name: Execute SonarQube Scan
     runs-on: self-hosted
     needs: Check-Out
+    environment:
+      name: staging
+      url: http://localhost:9000/dashboard?id=GitHubActions-Demo
     steps: 
       - name: SonarQube Scan
         run: >
@@ -24,17 +27,13 @@ jobs:
           -D"sonar.host.url=http://localhost:9000" 
           -D"sonar.java.binaries=." 
           -D"sonar.token=sqp_5b93de5d4b3df72ac75fcf5422c339c5d1305557"
-  SonarQube-Show:
-    name: Show SonarQube Report
-    runs-on: self-hosted
-    needs: SonarQube-Scan
-    steps:
-      - name: Open SonarQube Page
-        run: start chrome.exe http://localhost:9000/dashboard?id=GitHubActions-Demo
   Docker-Build-Push: 
     name: Build & Push Docker Image
     runs-on: self-hosted
     needs: [SonarQube-Scan]
+    environment:
+      name: staging
+      url: https://hub.docker.com/repository/docker/arndvorrath/githubactionsdemo/general
     steps:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -47,13 +46,6 @@ jobs:
         with:
           push: true
           tags: arndvorrath/githubactionsdemo:latest
-  DockerHub-Show: 
-    name: Show DockerHub Repository
-    runs-on: self-hosted
-    needs: [Docker-Build-Push] 
-    steps:
-      - name: Open DockerHub page
-        run: start chrome.exe https://hub.docker.com/repository/docker/arndvorrath/githubactionsdemo/general
   Docker-Deploy:
     name: Deploy new Docker container
     runs-on: self-hosted
@@ -65,27 +57,7 @@ jobs:
       - name: Stop old Docker container
         run: docker stop $(docker ps -a -q)
       - name: Deploy new Docker container
-        run: docker run -p 49160:8080 -d arndvorrath/githubactionsdemo:latest
-  Frontend-Show:
-    name: Show Frontend page
-    runs-on: self-hosted
-    needs: [Docker-Deploy]  
-    environment:
-      name: staging
-      url: http://localhost:49160
-    steps:
-      - name: Show Frontend page
-        run: start chrome.exe http://localhost:49160 
-  API-Show:
-    name: Show API page
-    runs-on: self-hosted
-    needs: [Docker-Deploy]  
-    environment:
-      name: staging
-      url: http://localhost:49160/locations
-    steps:
-      - name: Show API page
-        run: start chrome.exe http://localhost:49160/locations      
+        run: docker run -p 49160:8080 -d arndvorrath/githubactionsdemo:latest     
   Selenium-Test:
     name: Execute Selenium Cucumber tests
     runs-on: self-hosted
@@ -101,25 +73,33 @@ jobs:
     needs: [Selenium-Test] 
     steps:
       - name: Show Cucumber report
-        run: start chrome.exe C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\target\cucumber-html-reports\overview-features.html    
+        id: html_preview
+        uses: pavi2410/html-preview-action@v2
+        with:
+          html_file: 'C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\target\cucumber-html-reports\overview-features.html'    
   Xray-Upload:
     name: Upload Report in Xray
     runs-on: self-hosted
     needs: [Selenium-Test] 
+    environment:
+      name: staging
+      url: https://proactioneu.ent.cgi.com/jira/browse/TECHRADAR-396
     steps:
       - name: Upload Report in Xray     
-        run: curl.exe -H "Content-Type:application/json" -X POST -H "Authorization:Bearer NzQ3ODI1NzE4NTg3OtuwGrJJJWBd1fg2oXpcSQi9YmFg" --data @C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\target\cucumber.json  "https://proactioneu.ent.cgi.com/jira/rest/raven/1.0/import/execution/cucumber"
-  Xray-Show:
-    name: Show Xray page
-    runs-on: self-hosted
-    needs: [Xray-Upload] 
-    steps:
-      - name: Show Xray page
-        run: start chrome https://proactioneu.ent.cgi.com/jira/browse/TECHRADAR-396 
+        run: >
+          curl.exe 
+          -H "Content-Type:application/json" 
+          -X POST 
+          -H "Authorization:Bearer NzQ3ODI1NzE4NTg3OtuwGrJJJWBd1fg2oXpcSQi9YmFg" 
+          --data @C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\target\cucumber.json  
+          "https://proactioneu.ent.cgi.com/jira/rest/raven/1.0/import/execution/cucumber"
   Mail-Send:
     name: Send a Notification email
     runs-on: self-hosted
     needs: [Xray-Upload]
+    environment:
+      name: staging
+      url: https://mail.google.com/mail/u/0/#inbox
     steps:   
       - name: Announcerr
         uses: singhkshitij/announcerr@v2.0
@@ -129,21 +109,8 @@ jobs:
           username: ${{secrets.MAIL_USERNAME}}
           password: ${{secrets.MAIL_PASSWORD}}
           subject: Launching my awesomeProduct version ${{ github.event.release.tag_name }}
-          # Literal body:
-          # body: Just launched new version of my ${{github.repository}} ! It is fully packed with awesome features.
-          # Read file contents as body:
-          body: "file:///home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber-html-reports/overview-features.html" 
+          body: 'C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\target\cucumber-html-reports\overview-features.html'
           to: qammeister@gmail.com
           from: GitHub-Actions-Demo # <qammeister@gmail.com>
-          # Optional content type (defaults to text/plain):
           content_type: text/html
-          # Optional attachments:
-          attachments: /home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber-html-reports/overview-features.html 
-  Show-Mail:
-    name: Show Notification Mail
-    runs-on: self-hosted
-    needs: [Mail-Send] 
-    steps:
-      - name: Show Notification Mail
-        run: chrome https://mail.google.com/mail/u/0/#inbox 
-
+          attachments: 'C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\target\cucumber-html-reports\overview-features.html'
