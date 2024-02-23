@@ -6,8 +6,8 @@ jobs:
     name: Test
     runs-on: self-hosted
     steps: 
-      - name: Test
-        run: start chrome.exe http://www.google.com
+      - uses: browser-actions/setup-chrome@v1
+      - run: chrome --version
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
