@@ -67,13 +67,19 @@ jobs:
     environment:
       name: staging
       url: http://localhost:49160
+    steps:
+      - name: Show Frontend page
+        run: start chrome.exe http://localhost:49160 
   API-Show:
     name: Show API page
     runs-on: self-hosted
     needs: [Docker-Deploy]  
     environment:
       name: staging
-      url: http://localhost:49160/locations    
+      url: http://localhost:49160/locations
+    steps:
+      - name: Show API page
+        run: start chrome.exe http://localhost:49160/locations      
   Selenium-Test:
     name: Execute Selenium Cucumber tests
     runs-on: self-hosted
@@ -89,7 +95,7 @@ jobs:
     needs: [Selenium-Test] 
     steps:
       - name: Show Cucumber report
-        run: chrome C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\target\cucumber-html-reports\overview-features.html    
+        run: start chrome.exe C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\target\cucumber-html-reports\overview-features.html    
   Xray-Upload:
     name: Upload Report in Xray
     runs-on: self-hosted
