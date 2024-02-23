@@ -59,7 +59,7 @@ jobs:
       - name: Stop old Docker container
         run: docker stop $(docker ps -a -q)
       - name: Deploy new Docker container
-        run: docker run -p 3000:49160 -d arndvorrath/githubactionsdemo:latest
+        run: docker run -p 8080:49160 -d arndvorrath/githubactionsdemo:latest
   Selenium-Test:
     name: Execute Selenium Cucumber tests
     runs-on: self-hosted
