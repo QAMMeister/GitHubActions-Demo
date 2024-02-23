@@ -24,7 +24,7 @@ jobs:
     needs: SonarQube-Scan
     steps:
       - name: Open SonarQube Page
-        run: start chrome.exe http://10.0.2.15:9000/dashboard?id=GitHubActions-Demo
+        run: start chrome.exe http://localhost:9000/dashboard?id=GitHubActions-Demo
   Docker-Build-Push: 
     name: Build & Push Docker Image
     runs-on: self-hosted
@@ -54,7 +54,7 @@ jobs:
     needs: [Docker-Build-Push]
     environment:
       name: staging
-      url: http://10.0.2.15:49160
+      url: http://localhost:49160
     steps:
       - name: Stop old Docker container
         run: docker stop $(docker ps -a -q)
@@ -89,7 +89,7 @@ jobs:
     needs: [Xray-Upload] 
     steps:
       - name: Show Xray page
-        run: google-chrome https://proactioneu.ent.cgi.com/jira/browse/TECHRADAR-396 
+        run: chrome https://proactioneu.ent.cgi.com/jira/browse/TECHRADAR-396 
   Mail-Send:
     name: Send a Notification email
     runs-on: self-hosted
@@ -119,5 +119,5 @@ jobs:
     needs: [Mail-Send] 
     steps:
       - name: Show Notification Mail
-        run: google-chrome https://mail.google.com/mail/u/0/#inbox 
+        run: chrome https://mail.google.com/mail/u/0/#inbox 
 
