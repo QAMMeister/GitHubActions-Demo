@@ -75,7 +75,7 @@ jobs:
     needs: [Selenium-Test] 
     steps:
       - name: Show Cucumber report
-        run: google-chrome /home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber-html-reports/overview-features.html    
+        run: chrome /home/githubactions/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/target/cucumber-html-reports/overview-features.html    
   Xray-Upload:
     name: Upload Report in Xray
     runs-on: self-hosted
