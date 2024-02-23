@@ -7,7 +7,7 @@ jobs:
     runs-on: self-hosted
     steps: 
       - name: Test
-        run: start chrome.exe 
+        run: start chrome google.com
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
