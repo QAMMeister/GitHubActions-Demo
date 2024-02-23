@@ -7,7 +7,7 @@ jobs:
     runs-on: self-hosted
     steps: 
       - name: Test
-        run: chrome 
+        run: start chrome 
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
