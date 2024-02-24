@@ -66,6 +66,7 @@ jobs:
       - name: Execute Selenium Cucumber test
         run: |
           cd main
+          cd Selenium
           mvn verify
   Selenium-Show:
     name: Show Cucumber Report
