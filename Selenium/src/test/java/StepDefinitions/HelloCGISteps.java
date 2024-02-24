@@ -12,7 +12,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class HelloWorldSteps {
+public class HelloCGISteps {
     public WebDriver driver;
 
     @Given("I open the URL {string}")
