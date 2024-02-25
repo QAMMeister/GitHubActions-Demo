@@ -2,6 +2,12 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [workflow_dispatch]
 jobs:   
+  Test:
+    name: Test
+    runs-on: self-hosted
+    steps:
+      - name: test
+        run: C:\Progra~1\Google\Chrome\Application\chrome.exe C:\SourceCode\HelloCGI\index.html
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
