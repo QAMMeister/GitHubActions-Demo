@@ -74,16 +74,8 @@ jobs:
           cd main
           cd Selenium
           mvn verify
-  Selenium-Show:
-    name: Show Selenium Cucumber Report
-    runs-on: self-hosted
-    needs: [Selenium-Test] 
-    steps:
       - name: Show Selenium Cucumber report
-        id: html_preview
-        uses: pavi2410/html-preview-action@v2
-        with:
-          html_file: C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\Selenium\target\cucumber-html-reports\overview-features.html
+        run: C:\Progra~1\Google\Chrome\Application\chrome.exe C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\Selenium\target\cucumber-html-reports\overview-features.html
   Karate-Test:
     name: Execute Karate Cucumber tests
     runs-on: self-hosted
@@ -94,13 +86,8 @@ jobs:
           cd main
           cd Karate
           mvn verify
-  Karate-Show:
-    name: Show Karate Cucumber Report
-    runs-on: self-hosted
-    needs: [Karate-Test] 
-    steps:
-      - name: Show Karate Cucumber report
-        run: C:/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/Karate/target/karate-reports/karate-summary.html
+      - name: Show Karate Cucumber Report
+        run: C:\Progra~1\Google\Chrome\Application\chrome.exe C:/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/Karate/target/karate-reports/karate-summary.html
   Xray-Upload:
     name: Upload Report in Xray
     runs-on: self-hosted
