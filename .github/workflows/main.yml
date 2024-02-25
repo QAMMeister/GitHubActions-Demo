@@ -9,7 +9,7 @@ jobs:
       - name: test
         run: |
           cd C:\Progra~1\Google\Chrome\Application
-          chrome.exe --disable-gpu --disable-software-rasterizer        
+          chrome.exe     
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
