@@ -8,8 +8,8 @@ jobs:
     steps:
       - name: test
         run: |
-          cd C:\Progra~1\Google\Chrome\Application
-          chrome.exe     
+          cd "C:\Program Files (x86)\Microsoft\Edge\Application"
+          msedge.exe    
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
