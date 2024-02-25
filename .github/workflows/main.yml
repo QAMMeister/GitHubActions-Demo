@@ -101,7 +101,7 @@ jobs:
   Xray-Upload:
     name: Upload Report in Xray
     runs-on: self-hosted
-    needs: [Selenium-Test] 
+    needs: [Selenium-Test, Karate-Test] 
     environment:
       name: staging
       url: https://proactioneu.ent.cgi.com/jira/browse/TECHRADAR-396
