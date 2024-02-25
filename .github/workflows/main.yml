@@ -7,10 +7,7 @@ jobs:
     runs-on: self-hosted
     steps:    
     - name: HTML Preview
-      id: html_preview
-      uses: pavi2410/html-preview-action@v2
-      with:
-        html_file: 'index.html'  
+      run: start notepad.exe
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
