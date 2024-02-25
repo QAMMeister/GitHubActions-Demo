@@ -9,7 +9,8 @@ jobs:
       - name: test
         run: |
           C:\Progra~1\Google\Chrome\Application\chrome.exe --disable-gpu
-          C:\Windows\notepad.exe        
+          cd C:\Windows
+          notepad.exe        
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
