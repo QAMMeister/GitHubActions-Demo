@@ -7,9 +7,7 @@ jobs:
     runs-on: self-hosted
     steps:    
     - name: HTML Preview
-      run: |
-        cd "C:\Program Files\Google\Chrome\Application"
-        chrome.exe
+      run: C:\Program Files\Google\Chrome\Application\chrome.exe http://www.cgi.com        
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
