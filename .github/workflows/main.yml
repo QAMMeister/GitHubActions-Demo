@@ -77,7 +77,7 @@ jobs:
         id: html_preview
         uses: pavi2410/html-preview-action@v2
         with:
-          html_file: C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\target\cucumber-html-reports\overview-features.html
+          html_file: C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\Selenium\target\cucumber-html-reports\overview-features.html
   Xray-Upload:
     name: Upload Report in Xray
     runs-on: self-hosted
@@ -92,7 +92,7 @@ jobs:
           -H "Content-Type:application/json" 
           -X POST 
           -H "Authorization:Bearer NzQ3ODI1NzE4NTg3OtuwGrJJJWBd1fg2oXpcSQi9YmFg" 
-          --data @C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\target\cucumber.json  
+          --data @C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\Selenium\target\cucumber.json  
           "https://proactioneu.ent.cgi.com/jira/rest/raven/1.0/import/execution/cucumber"
   Mail-Send:
     name: Send a Notification email
@@ -110,8 +110,8 @@ jobs:
           username: ${{secrets.MAIL_USERNAME}}
           password: ${{secrets.MAIL_PASSWORD}}
           subject: Launching my awesomeProduct version ${{ github.event.release.tag_name }}
-          body: 'C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\target\cucumber-html-reports\overview-features.html'
+          body: 'C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\Selenium\target\cucumber-html-reports\overview-features.html'
           to: qammeister@gmail.com
           from: GitHub-Actions-Demo # <qammeister@gmail.com>
           content_type: text/html
-          attachments: 'C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\target\cucumber-html-reports\overview-features.html'
+          attachments: 'C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\Selenium\target\cucumber-html-reports\overview-features.html'
