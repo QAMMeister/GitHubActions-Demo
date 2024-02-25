@@ -7,7 +7,7 @@ jobs:
     runs-on: self-hosted
     steps:    
     - name: HTML Preview
-      run: start notepad.exe
+      run: cmd.exe /c notepad.exe
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
