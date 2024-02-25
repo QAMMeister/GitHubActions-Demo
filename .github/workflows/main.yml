@@ -97,7 +97,7 @@ jobs:
         id: html_preview
         uses: pavi2410/html-preview-action@v2
         with:
-          html_file: C:\actions-runner\_work\GitHubActionsDemo\GitHubActionsDemo\main\Karate\target\cucumber-html-reports\overview-features.html
+          html_file: C:/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/Karate/target/karate-reports/karate-summary.html
   Xray-Upload:
     name: Upload Report in Xray
     runs-on: self-hosted
