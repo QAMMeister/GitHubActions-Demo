@@ -8,8 +8,8 @@ jobs:
     steps:
       - name: test
         run: |
-          cd C:\Windows
-          start notepad.exe        
+          cd C:\Progra~1\Google\Chrome\Application
+          chrome        
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
