@@ -17,8 +17,7 @@ jobs:
     needs: Check-Out
     environment:
       name: staging
-      # url: http://localhost:9000/dashboard?id=githubactions-demo
-      url: file:///C:/actions-runner/_work/GitHubActionsDemo/GitHubActionsDemo/main/Karate/target/karate-reports/tests.FirstAPITest.html
+      url: http://localhost:9000/dashboard?id=githubactions-demo
     steps: 
       - name: SonarQube Scan
         run: >
