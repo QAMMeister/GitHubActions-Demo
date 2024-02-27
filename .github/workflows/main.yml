@@ -7,9 +7,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: test
-        run: |
-          cd "C:\Program Files (x86)\Microsoft\Edge\Application"
-          C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE ./msedge.exe    
+        run: chrome http://www.cgi.com    
   Check-Out:
     name: Check out repository code
     runs-on: self-hosted
